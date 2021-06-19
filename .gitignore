@@ -136,4 +136,10 @@ dmypy.json
 .env.production
 .env_db
 
+.idea/
+.devcontainer/
+
+db/
 db.sqlite3
+
+*.0??/

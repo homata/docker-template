@@ -1,4 +1,5 @@
 version: "3.7"
+
 services:
   django:
     # コンテナ名
@@ -6,10 +7,15 @@ services:
     # ビルドするdockerファイルが格納されたディレクトリ
     build: ./django
     # 正常起動後に実行するコマンド
-    command: python3 manage.py runserver 0.0.0.0:8000
+    # command: python3 manage.py runserver 0.0.0.0:8000
+    command: gunicorn config.wsgi:application --bind 0.0.0.0:8000
     volumes:
       # マウントするディレクトリ
       - ./django:/usr/src/app/
+      - ./django/static_volume:/usr/src/app/staticfiles
+      - ./django/media_volume:/usr/src/app/mediafiles
+      # - static_volume:/usr/src/app/staticfiles
+      # - media_volume:/usr/src/app/mediafiles
     ports:
       # ホスト側のポート：コンテナ側のポート
       - 8000:8000
@@ -30,7 +36,8 @@ services:
       # DBのデータはボリュームを作成して保存
       # ディレクトリとマウントとって実データをホストOSに直接残しても良い
       # /var/lib/postgresql/dataにDBのデータが格納されている
-      - db_postgis_data:/var/lib/postgresql/data
+      # - db_data:/var/lib/postgresql/data
+      - ./postgres/db/data:/var/lib/postgresql/data
       # down -vなどでボリュームがない時などを含めた初回起動時に実行されるファイルを指定
       - ./postgres/sql:/docker-entrypoint-initdb.d
     env_file: ./postgres/.env_db
@@ -45,6 +52,10 @@ services:
     build: ./nginx
     volumes:
       - ./django/static:/usr/src/app/static
+      - ./django/static_volume:/usr/src/app/staticfiles
+      - ./django/media_volume:/usr/src/app/mediafiles
+      # - static_volume:/usr/src/app/staticfiles
+      # - media_volume:/usr/src/app/mediafiles
     ports:
       - 9000:80
     depends_on:
@@ -68,7 +79,7 @@ services:
       - back
 
 volumes:
-  db_postgis_data:
+  db_data:
   pgadmin4:
   static_volume:
   media_volume:
