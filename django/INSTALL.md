@@ -177,3 +177,76 @@ $ docker-compose run django python3 manage.py createsuperuser
 docker-compose logs -f
 docker-compose logs -f django
 ```
+
+
+
+
+Docker+Django
+----
+
+* [Pipenvを使ったPython開発まとめ](https://qiita.com/y-tsutsu/items/54c10e0b2c6b565c887a)
+
+```
+$ pipenv --python 3.8 install
+$ pipenv shell
+$ pipenv install
+```
+
+```
+$ django-admin startproject config .
+$ python manage.py runserver localhost:8000
+```
+
+```
+$ docker-compose build --no-cache
+$ docker-compose up -d --build
+$ docker-compose down -v
+$ psql -U app -d app
+$ docker-compose down -v
+
+### docker-compose
+
+bash シェル
+```
+$ docker-compose exec django bash
+```
+
+マイグレーション
+```
+$ docker-compose run django python3 manage.py makemigrations
+$ docker-compose run django python3 manage.py migrate
+```
+管理者作成
+```
+$ docker-compose run django python3 manage.py createsuperuser
+```
+
+### docker-memo
+```
+docker-compose logs -f
+docker-compose logs -f django
+```
+
+pipenv install --dev autopep8 flake8
+
+pipenv shell
+pipenv install geopandas
+pipenv install GeoAlchemy2
+pipenv install workdays
+pipenv install python-decouple
+pipenv install jupyterlab
+
+
+バージョン確認してインストール
+---
+$ gdal-config --version
+3.0.4
+$ export CPLUS_INCLUDE_PATH=/usr/include/gdal
+$ export C_INCLUDE_PATH=/usr/include/gdal
+$ pipenv run pip3 install GDAL==3.0.4
+$ pipenv run pip3 install Rtree
+
+(app) #  pipenv run pip3 install Rtree
+Requirement already satisfied: Rtree in ./.venv/lib/python3.8/site-packages (0.9.7)
+(app) # pipenv run pip3 install GDAL==3.0.4
+Requirement already satisfied: GDAL==3.0.4 in ./.venv/lib/python3.8/site-packages (3.0.4)

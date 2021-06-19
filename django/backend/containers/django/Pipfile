@@ -4,6 +4,9 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
+autopep8 = "*"
+flake8 = "*"
+jupyterlab = "*"
 
 [packages]
 django = "*"
@@ -16,7 +19,11 @@ django-environ = "==0.4.5"
 djoser = "==2.0.3"
 psycopg2-binary = "==2.8.5"
 django-filter = "*"
+python-decouple = "*"
 pillow = "*"
+geopandas = "*"
+geoalchemy2 = "*"
+workdays = "*"
 
 [requires]
 python_version = "3.8"
