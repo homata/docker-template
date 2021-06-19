@@ -4,17 +4,26 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
+autopep8 = "*"
+flake8 = "*"
+jupyterlab = "*"
 
 [packages]
-django = "==3.0.6"
+django = "*"
+gunicorn = "*"
 djangorestframework = "==3.11.0"
 djangorestframework-simplejwt = "==4.4.0"
 djangorestframework-gis = "==0.15"
 django-cors-headers = "==3.2.1"
 django-environ = "==0.4.5"
 djoser = "==2.0.3"
-gunicorn = "==20.0.4"
 psycopg2-binary = "==2.8.5"
+django-filter = "*"
+python-decouple = "*"
+pillow = "*"
+geopandas = "*"
+geoalchemy2 = "*"
+workdays = "*"
 
 [requires]
-python_version = "3.8.2"
+python_version = "3.8"
