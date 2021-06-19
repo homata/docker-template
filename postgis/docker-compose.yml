@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  db:
+    container_name: postgis_container
+    image: mdillon/postgis
+    environment:
+      POSTGRES_DB: postgre
+      POSTGRES_USER: docker
+      POSTGRES_PASSWORD: docker
+    volumes:
+    - ./docker/db/data:/var/lib/postgresql/data
+    - ./docker/db/sql:/docker-entrypoint-initdb.d
+    ports:
+    - 5432:5432
