@@ -127,3 +127,13 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# User Add
+# .venv
+# .env
+# .env
+.env.development
+.env.production
+.env_db
+
+db.sqlite3
