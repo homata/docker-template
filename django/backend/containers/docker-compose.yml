@@ -12,8 +12,8 @@ services:
     volumes:
       # マウントするディレクトリ
       - ./django:/usr/src/app/
-      - ./django/static_volume:/usr/src/app/staticfiles
-      - ./django/media_volume:/usr/src/app/mediafiles
+      # - ./django/static_volume:/usr/src/app/staticfiles
+      # - ./django/media_volume:/usr/src/app/mediafiles
       # - static_volume:/usr/src/app/staticfiles
       # - media_volume:/usr/src/app/mediafiles
     ports:
@@ -21,7 +21,8 @@ services:
       - 8000:8000
     env_file:
       # 環境変数に設定するファイル
-      -  ./django/.env
+      # -  ./django/.env
+      - ./.env
     depends_on:
       # 接続するサービス
       - postgres
@@ -40,7 +41,10 @@ services:
       - ./postgres/db/data:/var/lib/postgresql/data
       # down -vなどでボリュームがない時などを含めた初回起動時に実行されるファイルを指定
       - ./postgres/sql:/docker-entrypoint-initdb.d
-    env_file: ./postgres/.env_db
+    env_file:
+      # 環境変数に設定するファイル
+      # - ./postgres/.env_db
+      - ./.env
     ports:
       # ホスト側のポートはローカルのpsqlとバッティングするので5432以外にする
       - 5433:5432
@@ -52,8 +56,9 @@ services:
     build: ./nginx
     volumes:
       - ./django/static:/usr/src/app/static
-      - ./django/static_volume:/usr/src/app/staticfiles
-      - ./django/media_volume:/usr/src/app/mediafiles
+      - ./django/static:/usr/src/app/media
+      # - ./django/static_volume:/usr/src/app/staticfiles
+      # - ./django/media_volume:/usr/src/app/mediafiles
       # - static_volume:/usr/src/app/staticfiles
       # - media_volume:/usr/src/app/mediafiles
     ports:
@@ -68,7 +73,7 @@ services:
     volumes:
       - pgadmin4:/var/lib/pgadmin
     env_file:
-      - ./.env.development
+      - ./.env
     ports:
       - 5555:80
     depends_on:
@@ -81,8 +86,8 @@ services:
 volumes:
   db_data:
   pgadmin4:
-  static_volume:
-  media_volume:
+  # static_volume:
+  # media_volume:
 
 networks:
   front:

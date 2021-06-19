@@ -11,13 +11,13 @@ Django
 ### Memo
 
 ```
-mkdir -p backend/containers/django
-cd backend/containers/django
+$ mkdir -p backend/containers/django
+$ cd backend/containers/django
 ```
 
 pipenv directory
 ```
-export PIPENV_VENV_IN_PROJECT=true
+$ export PIPENV_VENV_IN_PROJECT=true
 ```
 
 ```
@@ -43,9 +43,9 @@ $ vi backend/containers/django/Dockerfile
 
 build
 ```
-docker-compose build
-docker-compose build --no-cache
-docker-compose ps
+$ docker-compose build
+$ docker-compose build --no-cache
+$ docker-compose ps
 ```
 
 build
@@ -63,21 +63,21 @@ Ctrl+Dでログアウト
 
 postgresコンテナとの接続用shellスクリプト
 ```
-vi backend/containers/django/entrypoint.sh
+$ vi backend/containers/django/entrypoint.sh
 ```
 
 ```
-vi backend/containers/docker-compose.yml
+$ vi backend/containers/docker-compose.yml
 ```
 
 Docker起動＆構築
 ```
-docker-compose up -d --build
+$ docker-compose up -d --build
 ```
 
 一旦コンテナを停止・イメージを削除
 ```
-docker-compose down -v
+$ docker-compose down -v
 http://localhost:8000
 ```
 
@@ -96,10 +96,9 @@ $ psql -U <YOUR_DB_USER> -d <YOUR_DB_NAME>
 
 migrate
 ```
-docker-compose exec django bash
-python3 manage.py migrate
+$ docker-compose exec django bash
+$ python3 manage.py migrate
 ```
-
 
 ```
 $ docker exec -it postgres bash
@@ -121,23 +120,19 @@ app=#
 $ docker-compose down -v
 ```
 
-
 ```
 $ mkdir nginx
 $ cd nginx/
 $ touch Dockerfile
 $ vi backend/containers/nginx/nginx.conf
-```
-
+``
 
 ### Debug
 
 #### PyCharm
-
 * [【Django】PyCharmでDjangoのコンテナ(Docker)開発環境をサクっと構築する](https://qiita.com/thim/items/82678e1cd59c925846b4)
 
 #### VSCode
-
 * [DockerでPythonの開発環境を作成してみる　その1](https://ittech-nsnl.hatenablog.com/entry/2019/11/12/233136)
 * [DockerでPythonの開発環境を作成してみる　その2](https://ittech-nsnl.hatenablog.com/entry/2019/11/20/233219)
 
