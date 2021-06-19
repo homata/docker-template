@@ -94,12 +94,6 @@ $ docker exec -it postgres bash
 $ psql -U <YOUR_DB_USER> -d <YOUR_DB_NAME>
 ```
 
-migrate
-```
-$ docker-compose exec django bash
-$ python3 manage.py migrate
-```
-
 ```
 $ docker exec -it postgres bash
 
@@ -133,6 +127,53 @@ $ vi backend/containers/nginx/nginx.conf
 * [【Django】PyCharmでDjangoのコンテナ(Docker)開発環境をサクっと構築する](https://qiita.com/thim/items/82678e1cd59c925846b4)
 
 #### VSCode
-* [DockerでPythonの開発環境を作成してみる　その1](https://ittech-nsnl.hatenablog.com/entry/2019/11/12/233136)
-* [DockerでPythonの開発環境を作成してみる　その2](https://ittech-nsnl.hatenablog.com/entry/2019/11/20/233219)
+* [ぼく「Djangoのリモートデバッグも出来ないエディターなんて…」VSCode「それ、できるで。」~docker-compose編~](https://qiita.com/nokonoko_1203/items/33a05c86f359027afb33)
 
+"""
+Remote-Containers: Add Development Container configuration Files...
+From 'docker-compose.yml
+デバックしたいサービスを選択(今回はDjango)
+.devcontainerディレクトリと、その中にdevcontainer.json及びdocker-compose.ymlが出来る
+Remote-Containers: Open Folder in Containers...
+.devcontainerが存在するディレクトリ（今回の例ではcontainers）を選択
+Remote-Containers: Attach to Running Containers...
+Docker Debug ins Container
+"""
+
+##### 保留
+* [DockerでPythonの開発環境を作成してみる　その1](https://ittech-nsnl.hatenablog.com/entry/2019/11/12/233136)
+    * [DockerでPythonの開発環境を作成してみる　その2](https://ittech-nsnl.hatenablog.com/entry/2019/11/20/233219)
+* [docker-composeで作成したDjango環境をVS Codeでリモートデバッグする](https://qiita.com/makiuchiatisols/items/ddc6cf8fb16968ac8bf3)
+
+
+
+
+##### 注意
+* デバック用にdocker-compose-debug.ymlを起動する
+    - 通常のdocker-compose.ymlで終了させておく (コンテナを立ち上げている場合は一旦停止させてる)
+    - デバッグ用のコンテナを立ちあげるので、元々のymlファイルが同じものを使っていると名前が競合する
+
+### docker-compose
+
+bash シェル
+```
+$ docker-compose exec django bash
+```
+
+マイグレーション
+```
+$ docker-compose run django python3 manage.py makemigrations
+$ docker-compose run django python3 manage.py migrate
+```
+管理者作成
+```
+$ docker-compose run django python3 manage.py createsuperuser
+```
+
+
+### docker-memo
+
+```
+docker-compose logs -f
+docker-compose logs -f django
+```

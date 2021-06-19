@@ -1,0 +1,59 @@
+version: "3.7"
+
+services:
+  django:
+    container_name: django
+    build: ../django
+    command: python3 manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ../django:/usr/src/app/
+    ports:
+      - 8000:8000
+      # デバッグ用にポートを追加
+      - 8888:8888
+    env_file:
+      - ../.env
+    depends_on:
+      - postgres
+    networks:
+      - front
+      - back
+
+  postgres:
+    container_name: postgres
+    build: ../postgres
+    volumes:
+      - ../postgres/db/data:/var/lib/postgresql/data
+      - ../postgres/sql:/docker-entrypoint-initdb.d
+    env_file:
+      - ../.env
+    ports:
+      - 5433:5432
+    networks:
+      - back
+
+  pgadmin4:
+    image:  dpage/pgadmin4:latest
+    volumes:
+      - pgadmin4:/var/lib/pgadmin
+    env_file:
+      - ../.env
+    ports:
+      - 5555:80
+    depends_on:
+      - postgres
+    links:
+      - postgres
+    networks:
+      - back
+
+volumes:
+  db_data:
+  pgadmin4:
+
+networks:
+  front:
+    external: false
+  back:
+    external: false
+

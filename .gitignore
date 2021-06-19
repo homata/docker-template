@@ -137,8 +137,6 @@ dmypy.json
 .env_db
 
 .idea/
-.devcontainer/
-
 db/
 db.sqlite3
 
