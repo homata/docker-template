@@ -1,0 +1,42 @@
+version: "3.9"
+
+services:
+  db:
+    container_name: db
+    build:
+      context: ./db
+      dockerfile: Dockerfile
+    volumes:
+      - ./db/postgresql/data:/var/lib/postgresql/data/
+    env_file:
+      - ./.env
+    ports:
+      - 5433:5432
+    networks:
+      - back
+
+  pgadmin4:
+    container_name: pgadmin4
+    image: dpage/pgadmin4:latest
+    volumes:
+      - pgadmin4:/var/lib/pgadmin
+    env_file:
+      - ./.env
+    ports:
+      - 5555:80
+    depends_on:
+      - db
+    links:
+      - db
+    networks:
+      - back
+
+volumes:
+  pgadmin4:
+
+networks:
+  front:
+    external: false
+  back:
+    external: false
+

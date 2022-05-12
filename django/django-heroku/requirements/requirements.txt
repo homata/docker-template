@@ -1,0 +1,10 @@
+django
+gunicorn
+django-heroku
+django-import-export
+djangorestframework
+djangorestframework-simplejwt
+python-decouple
+psycopg2-binary
+line-bot-sdk
+

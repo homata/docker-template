@@ -1,0 +1,7 @@
+-r requirements.txt
+autopep8
+django-extensions
+django-debug-toolbar
+pytest
+pytest-django
+flake8

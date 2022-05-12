@@ -1,0 +1,17 @@
+gdal
+numpy
+pandas
+pandas
+fiona
+rtree
+shapely
+sqlalchemy
+geopandas
+psycopg2-binary
+GeoAlchemy2
+geopy
+pydeck
+pyshp
+folium
+luigi
+openpyxl

@@ -1,0 +1,31 @@
+[tool.poetry]
+name = "apps"
+version = "0.1.0"
+description = ""
+authors = ["Hiroshi Omata <op.homata@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+Django = "^4.0.4"
+gunicorn = "*"
+djangorestframework = "*"
+djangorestframework-simplejwt = "*"
+python-decouple = "*"
+psycopg2-binary = "*"
+django-import-export = "*"
+djoser = "*"
+django-heroku = "*"
+line-bot-sdk = "*"
+
+[tool.poetry.dev-dependencies]
+autopep8 = "*"
+flake8 = "*"
+jupyterlab = "*"
+django-extensions = "*"
+django-debug-toolbar = "*"
+pytest = "*"
+pytest-django = "*"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
