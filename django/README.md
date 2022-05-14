@@ -1,9 +1,18 @@
 DockerでDjango環境を作成
 ----
+Dockerのテンプレート集
+
+### django
+Djangoのベース
+
 * 001.base: 基本のベース
 * 002.debug: デバック(runserver)で起動
 * 003.prod: 本番と開発モードを準備
 * 004.postgis: PostGISの環境
+* 005.auth_user_model: AUTH_USER_MODELの環境
+* django-heroku: Heroku用
+* django-postgis-redis: Redisを利用
+
 
 ### 参考
 * [DockerでDjangoローカル開発環境を爆速構築](https://michinoku-se.org/docker-django/)

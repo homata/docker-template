@@ -1,0 +1,13 @@
+django
+djangorestframework
+djangorestframework-simplejwt
+djangorestframework-gis
+django-cors-headers
+django-environ
+djoser
+gunicorn
+psycopg2-binary
+python-decouple
+django-import-export
+django-extensions
+django-debug-toolbar
