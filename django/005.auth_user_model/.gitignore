@@ -145,3 +145,4 @@ compose/
 
 data/
 .postgis_data/
+django/staticfiles/
