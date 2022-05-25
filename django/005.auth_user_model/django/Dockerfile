@@ -57,4 +57,4 @@ COPY ./entrypoint.sh /usr/src/app/entrypoint.sh
 COPY . /usr/src/app/
 
 # シェルスクリプトを実行
-ENTRYPOINT ["/usr/src/app/entrypoint.sh"]
+ENTRYPOINT ["bash", "/usr/src/app/entrypoint.sh"]
